@@ -1,0 +1,25 @@
+{
+  "name": "pocket-sets.api",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/sebi31/PocketSets.API.git",
+  "author": "Seb <sebastian.szaniszlo@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc",
+    "dev": "ts-node ./src/index.ts",
+    "start": "nodemon ./dist/index.js",
+    "prod": "npm run build && npm run start"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3",
+    "mongoose": "^5.2.9"
+  },
+  "devDependencies": {
+    "@types/express": "^4.16.0",
+    "@types/mongoose": "^5.2.6",
+    "@types/node": "^10.9.0",
+    "typescript": "^3.0.1"
+  }
+}
