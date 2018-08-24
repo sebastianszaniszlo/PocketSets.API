@@ -11,8 +11,3 @@ const BaseExcerciseSchema: Schema = new Schema({
 }, { collection: 'BaseExcercise' });
 
 export const BaseExcercise: Model<IBaseExcercise> = model<IBaseExcercise>('BaseExcercise', BaseExcerciseSchema);
-
-export function GetBaseExcercise(callback) {
-
-    BaseExcercise.find(callback);
-}
