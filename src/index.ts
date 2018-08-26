@@ -1,10 +1,10 @@
 import App from './app';
 import { attachControllers } from '@decorators/express';
-import BaseExcerciseController from './controllers/BaseExcerciseController';
+import BaseExerciseController from './controllers/BaseExerciseController';
 
 const PORT = 3000;
 
-attachControllers(App, [BaseExcerciseController])
+attachControllers(App, [BaseExerciseController])
 
 App.listen(PORT, () => {
     console.log('Server listening on port ' + PORT);
