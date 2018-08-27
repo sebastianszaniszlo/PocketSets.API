@@ -3,10 +3,10 @@
         "module": "commonjs",
         "moduleResolution": "node",
         "pretty": true,
+        "experimentalDecorators": true,
         "sourceMap": true,
         "target": "es6",
-        "outDir": "./dist",
-        "baseUrl": "./src"
+        "outDir": "./dist"
     },
     "include": [
         "src/**/*.ts"
