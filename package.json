@@ -18,13 +18,11 @@
     "@decorators/mongoose": "^3.0.1",
     "@decorators/socket": "^3.0.2",
     "body-parser": "^1.18.3",
-    "dotenv": "^6.0.0",
     "express": "^4.16.3",
     "mongoose": "^5.2.9",
     "nodemon": "^1.18.3"
   },
   "devDependencies": {
-    "@types/dotenv": "^4.0.3",
     "@types/express": "^4.16.0",
     "@types/mongodb": "^3.1.4",
     "@types/mongoose": "^5.2.6",
