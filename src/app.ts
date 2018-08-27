@@ -1,17 +1,20 @@
 import * as express from 'express';
 import * as mongoose from 'mongoose';
 import * as bodyParser from 'body-parser';
+import * as dotenv from 'dotenv';
 
 class App {
 
     public ExpressApp: express.Application;
     public Router: express.Router;
-    public mongoUrl: string = 'mongodb://localhost:27017/pocket-sets';
+    public mongoUrl: string ;
+    public dotEnvConfig: dotenv.DotenvResult;
 
     constructor() {
 
         this.ExpressApp = express();
         this.Router = express.Router();
+        this.dotEnvConfig = dotenv.config();
         this.Config();
     }
 
@@ -24,6 +27,14 @@ class App {
 
     private MongoSetup(): void {
 
+        if(process.env.NODE_ENV == 'production') {
+            
+            this.mongoUrl = process.env.DB_PROD;
+        }
+        else{
+
+            this.mongoUrl = process.env.DB_DEV;
+        }
         mongoose.connect(this.mongoUrl);
     }
 

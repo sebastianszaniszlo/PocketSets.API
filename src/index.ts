@@ -2,7 +2,7 @@ import { ExpressApp, Router } from './app';
 import { attachControllers } from '@decorators/express';
 import BaseExerciseController from './controllers/BaseExerciseController';
 
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 attachControllers(Router, [BaseExerciseController])
 
