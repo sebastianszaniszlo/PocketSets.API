@@ -1,12 +1,13 @@
 import * as express from 'express';
 import * as mongoose from 'mongoose';
 import * as bodyParser from 'body-parser';
+import { mongoConnectionString } from './config';
 
 class App {
 
     public ExpressApp: express.Application;
     public Router: express.Router;
-    public mongoUrl: string ;
+    public ConnectionString: string ;
 
     constructor() {
 
@@ -26,14 +27,14 @@ class App {
 
         if(process.env.NODE_ENV == 'production') {
             
-            this.mongoUrl = process.env.DB_PROD;
+            this.ConnectionString = process.env.DB_PROD;
         }
         else {
 
-            this.mongoUrl = 'mongodb://localhost:27017/pocket-sets';
+            this.ConnectionString = mongoConnectionString;
         }
 
-        mongoose.connect(this.mongoUrl);
+        mongoose.connect(this.ConnectionString, { useNewUrlParser: true });
     }
 
     private Middleware() : void {
