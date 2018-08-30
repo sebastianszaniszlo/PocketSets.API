@@ -1,10 +1,10 @@
 import { Inject, Injectable } from "@decorators/di";
 import ListBaseExercisesCommand from "../../commands/BaseExercises/ListBaseExercisesCommand";
-import IBaseExcercise from "../../models/BaseExercise/IBaseExercise";
+import IBaseExcercise from "../../data/BaseExercises/IBaseExercise";
 import { DocumentQuery } from "mongoose";
 
 @Injectable()
-export default class ListBaseExercisesService {
+export default class ListBaseExercisesService implements IListBaseExcersisesService {
 
     constructor(@Inject(ListBaseExercisesCommand) private listBaseExercisesCommand: ListBaseExercisesCommand) {
 
@@ -15,4 +15,9 @@ export default class ListBaseExercisesService {
 
         return this.listBaseExercisesCommand.List();
     }
+}
+
+interface IListBaseExcersisesService {
+
+    List(): DocumentQuery<IBaseExcercise[], IBaseExcercise>
 }

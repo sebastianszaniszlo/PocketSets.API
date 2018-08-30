@@ -1,10 +1,10 @@
 import { Model, DocumentQuery } from 'mongoose';
-import IBaseExcercise from '../../models/BaseExercise/IBaseExercise';
+import IBaseExcercise from '../../data/BaseExercises/IBaseExercise';
 import { Injectable } from '@decorators/di';
-import { BaseExerciseMongoModel } from '../../models/BaseExercise/BaseExerciseMongoModel';
+import { BaseExerciseMongoModel } from '../../data/BaseExercises/BaseExerciseMongoModel';
 
 @Injectable()
-export default class ListBaseExercisesCommand {
+export default class ListBaseExercisesCommand implements IListBaseExercisesCommand {
 
     constructor(private Collection: Model<IBaseExcercise>) {
         
@@ -16,4 +16,9 @@ export default class ListBaseExercisesCommand {
         return this.Collection.find();
     }
 
+}
+
+interface IListBaseExercisesCommand {
+
+    List(): DocumentQuery<IBaseExcercise[], IBaseExcercise>;
 }

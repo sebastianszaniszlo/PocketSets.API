@@ -1,26 +1,25 @@
-import { Model, DocumentQuery } from 'mongoose';
-import IBaseExcercise from '../../models/BaseExercise/IBaseExercise';
+import { Model } from 'mongoose';
 import { Injectable } from '@decorators/di';
-import { BaseExerciseMongoModel } from '../../models/BaseExercise/BaseExerciseMongoModel';
-import BaseExercise from '../../models/BaseExercise/BaseExercise';
+import BaseExerciseRequest from '../../models/BaseExerciseRequest';
+import IBaseExcercise from '../../data/BaseExercises/IBaseExercise';
+import { BaseExerciseMongoModel } from '../../data/BaseExercises/BaseExerciseMongoModel';
 
 @Injectable()
-export default class CreateBaseExerciseCommand {
+export default class CreateBaseExerciseCommand implements ICreateBaseExerciseCommand{
 
     constructor(private Collection: Model<IBaseExcercise>) {
         
         this.Collection = BaseExerciseMongoModel;
     }
 
-    public Create(request: any): Promise<IBaseExcercise> {
+    public Create(request: BaseExerciseRequest): Promise<IBaseExcercise> {
 
-        let baseExercise: BaseExercise = new BaseExercise(request.Name,
-                                                            request.DefaultSets,
-                                                            request.DefaultReps,
-                                                            request.DefaultWeight,
-                                                            request.OneRepMax);
-
-        return this.Collection.create(baseExercise);
+        return this.Collection.create(request);
     }
 
+}
+
+interface ICreateBaseExerciseCommand {
+
+    Create(request: BaseExerciseRequest): Promise<IBaseExcercise>;
 }

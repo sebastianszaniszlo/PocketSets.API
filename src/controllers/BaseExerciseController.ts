@@ -1,19 +1,20 @@
 import { Response, Params, Controller, Get, Post, Put, Body} from '@decorators/express';
 import { Injectable, Inject } from '@decorators/di';
-import ListBaseExercisesService from '../services/BaseExercises/ListBaseExercisesService';
-import FindBaseExerciseService from '../services/BaseExercises/FindBaseExerciseService';
-import CreateBaseExerciseService from '../services/BaseExercises/CreateBaseExerciseService';
-import UpdateBaseExerciseService from '../services/BaseExercises/UpdateBaseExerciseService';
+import IListBaseExercisesService from '../services/BaseExercises/ListBaseExercisesService';
+import IFindBaseExerciseService from '../services/BaseExercises/FindBaseExerciseService';
+import ICreateBaseExerciseService from '../services/BaseExercises/CreateBaseExerciseService';
+import IUpdateBaseExerciseService from '../services/BaseExercises/UpdateBaseExerciseService';
+import BaseExerciseRequest from '../models/BaseExerciseRequest';
 
 
 @Controller('/baseexercises')
 @Injectable()
 export default class BaseExerciseController {
 
-    constructor(@Inject(ListBaseExercisesService) private ListBaseExercisesService: ListBaseExercisesService,
-                @Inject(FindBaseExerciseService) private FindBaseExerciseService: FindBaseExerciseService,
-                @Inject(CreateBaseExerciseService) private CreateBaseExerciseService: CreateBaseExerciseService,
-                @Inject(UpdateBaseExerciseService) private UpdateBaseExerciseService: UpdateBaseExerciseService) {
+    constructor(@Inject(IListBaseExercisesService) private ListBaseExercisesService: IListBaseExercisesService,
+                @Inject(IFindBaseExerciseService) private FindBaseExerciseService: IFindBaseExerciseService,
+                @Inject(ICreateBaseExerciseService) private CreateBaseExerciseService: ICreateBaseExerciseService,
+                @Inject(IUpdateBaseExerciseService) private UpdateBaseExerciseService: IUpdateBaseExerciseService) {
 
     }
 
@@ -42,10 +43,11 @@ export default class BaseExerciseController {
     }
 
     @Post('/')
-    Create(@Body() req, @Response() res): void {
+    Create(@Body() req: BaseExerciseRequest, @Response() res): void {
 
         this.CreateBaseExerciseService.Create(req)
                             .then(data => {
+                                debugger;
                                 res.status(201).json(data);
                             })
                             .catch(err => {
@@ -54,7 +56,7 @@ export default class BaseExerciseController {
     }
 
     @Put('/:id')
-    Update(@Body() req, @Params('id') id: string, @Response() res): void {
+    Update(@Body() req: BaseExerciseRequest, @Params('id') id: string, @Response() res): void {
 
         this.UpdateBaseExerciseService.Update(id, req)
                             .then(data => {

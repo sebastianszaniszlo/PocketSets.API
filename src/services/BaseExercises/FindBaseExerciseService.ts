@@ -1,10 +1,10 @@
 import { Inject, Injectable } from "@decorators/di";
 import FindBaseExerciseCommand from "../../commands/BaseExercises/FindBaseExerciseCommand";
-import IBaseExcercise from "../../models/BaseExercise/IBaseExercise";
+import IBaseExcercise from "../../data/BaseExercises/IBaseExercise";
 import { DocumentQuery } from "mongoose";
 
 @Injectable()
-export default class FindBaseExerciseService {
+export default class FindBaseExerciseService implements IFindBaseExerciseService {
 
     constructor(@Inject(FindBaseExerciseCommand) private FindBaseExerciseCommand: FindBaseExerciseCommand) {
 
@@ -15,4 +15,9 @@ export default class FindBaseExerciseService {
 
         return this.FindBaseExerciseCommand.Find(id);
     }
+}
+
+interface IFindBaseExerciseService {
+
+    Find(id: string): DocumentQuery<IBaseExcercise, IBaseExcercise>;
 }

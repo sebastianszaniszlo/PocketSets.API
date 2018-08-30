@@ -1,4 +1,4 @@
-export default class BaseExercise {
+export default class BaseExerciseRequest {
 
     constructor(public Name: string,
                 public DefaultSets?: number,
