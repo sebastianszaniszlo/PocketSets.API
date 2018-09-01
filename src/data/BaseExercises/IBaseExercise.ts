@@ -7,4 +7,5 @@ export default interface IBaseExcercise extends Document {
     DefaultReps?: number;
     DefaultWeight?: number;
     OneRepMax?: number;
+    CategoryId: string;
 }

@@ -4,8 +4,7 @@ import { BaseExerciseSchema } from '../BaseExercises/BaseExerciseMongoModel';
 
 export const CategorySchema: Schema = new Schema({
 
-    Name: String,
-    BaseExercises: [BaseExerciseSchema]
+    Name: String
 
 });
 

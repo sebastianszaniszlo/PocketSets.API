@@ -1,12 +1,12 @@
 import { Inject, Injectable } from "@decorators/di";
-import CreateBaseExerciseCommand from "../../commands/BaseExercises/CreateBaseExerciseCommand";
+import ICreateBaseExerciseCommand from "../../commands/BaseExercises/CreateBaseExerciseCommand";
 import BaseExerciseRequest from "../../models/BaseExerciseRequest";
 import IBaseExcercise from "../../data/BaseExercises/IBaseExercise";
 
 @Injectable()
 export default class CreateBaseExerciseService implements ICreateBaseExcerciseService {
 
-    constructor(@Inject(CreateBaseExerciseCommand) private CreateBaseExerciseCommand: CreateBaseExerciseCommand) {
+    constructor(@Inject(ICreateBaseExerciseCommand) private CreateBaseExerciseCommand: ICreateBaseExerciseCommand) {
 
     }
 

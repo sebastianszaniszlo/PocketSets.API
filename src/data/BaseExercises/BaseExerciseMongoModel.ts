@@ -7,7 +7,8 @@ export const BaseExerciseSchema: Schema = new Schema({
     DefaultSets: Number,
     DefaultReps: Number,
     DefaultWeight: Number,
-    OneRepMax: Number
+    OneRepMax: Number,
+    CategoryId: Schema.Types.ObjectId
 });
 
 export const BaseExerciseMongoModel: Model<IBaseExercise> = model<IBaseExercise>('BaseExercise', BaseExerciseSchema);

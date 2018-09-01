@@ -1,19 +1,26 @@
 import { Inject, Injectable } from "@decorators/di";
-import ListBaseExercisesCommand from "../../commands/BaseExercises/ListBaseExercisesCommand";
+import IListBaseExercisesCommand from "../../commands/BaseExercises/ListBaseExercisesCommand";
+import IListBaseExercisesForCategoryCommand from "../../commands/BaseExercises/ListBaseExercisesForCategoryCommand";
 import IBaseExcercise from "../../data/BaseExercises/IBaseExercise";
 import { DocumentQuery } from "mongoose";
 
 @Injectable()
 export default class ListBaseExercisesService implements IListBaseExcersisesService {
 
-    constructor(@Inject(ListBaseExercisesCommand) private listBaseExercisesCommand: ListBaseExercisesCommand) {
+    constructor(@Inject(IListBaseExercisesCommand) private ListBaseExercisesCommand: IListBaseExercisesCommand,
+                @Inject(IListBaseExercisesForCategoryCommand) private ListBaseExercisesForCategoryCommand: IListBaseExercisesForCategoryCommand) {
 
     }
 
     //TO DO: pass in user id when we have authentication
     public List(): DocumentQuery<IBaseExcercise[], IBaseExcercise> {
 
-        return this.listBaseExercisesCommand.List();
+        return this.ListBaseExercisesCommand.List();
+    }
+
+    public ListForCategory(categoryId: string): DocumentQuery<IBaseExcercise[], IBaseExcercise> {
+
+        return this.ListBaseExercisesForCategoryCommand.List(categoryId);
     }
 }
 

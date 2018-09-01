@@ -1,12 +1,12 @@
 import { Inject, Injectable } from "@decorators/di";
-import FindBaseExerciseCommand from "../../commands/BaseExercises/FindBaseExerciseCommand";
+import IFindBaseExerciseCommand from "../../commands/BaseExercises/FindBaseExerciseCommand";
 import IBaseExcercise from "../../data/BaseExercises/IBaseExercise";
 import { DocumentQuery } from "mongoose";
 
 @Injectable()
 export default class FindBaseExerciseService implements IFindBaseExerciseService {
 
-    constructor(@Inject(FindBaseExerciseCommand) private FindBaseExerciseCommand: FindBaseExerciseCommand) {
+    constructor(@Inject(IFindBaseExerciseCommand) private FindBaseExerciseCommand: IFindBaseExerciseCommand) {
 
     }
 

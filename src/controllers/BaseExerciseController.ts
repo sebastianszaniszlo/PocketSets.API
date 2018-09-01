@@ -30,6 +30,18 @@ export default class BaseExerciseController {
                             });
     }
 
+    @Get('/bycategory/:categoryId')
+    GetAllForCategory(@Response() res, @Params('categoryId') categoryId: string): void {
+
+        this.ListBaseExercisesService.ListForCategory(categoryId)
+                            .then(data => {
+                                res.status(200).json(data);
+                            })
+                            .catch(err => {
+                                res.status(500).send(err);
+                            });
+    }
+
     @Get('/:id')
     Get(@Response() res, @Params('id') id: string): void {
 
@@ -47,7 +59,6 @@ export default class BaseExerciseController {
 
         this.CreateBaseExerciseService.Create(req)
                             .then(data => {
-                                debugger;
                                 res.status(201).json(data);
                             })
                             .catch(err => {

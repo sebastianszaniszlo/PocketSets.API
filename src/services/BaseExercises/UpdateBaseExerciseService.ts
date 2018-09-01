@@ -1,5 +1,5 @@
 import { Inject, Injectable } from "@decorators/di";
-import UpdateBaseExerciseCommand from "../../commands/BaseExercises/UpdateBaseExerciseCommand";
+import IUpdateBaseExerciseCommand from "../../commands/BaseExercises/UpdateBaseExerciseCommand";
 import IBaseExcercise from "../../data/BaseExercises/IBaseExercise";
 import { DocumentQuery } from "mongoose";
 import BaseExerciseRequest from "../../models/BaseExerciseRequest";
@@ -7,7 +7,7 @@ import BaseExerciseRequest from "../../models/BaseExerciseRequest";
 @Injectable()
 export default class UpdateBaseExerciseService implements IUpdateBaseExerciseService{
 
-    constructor(@Inject(UpdateBaseExerciseCommand) private UpdateBaseExerciseCommand: UpdateBaseExerciseCommand) {
+    constructor(@Inject(IUpdateBaseExerciseCommand) private UpdateBaseExerciseCommand: IUpdateBaseExerciseCommand) {
 
     }
 
