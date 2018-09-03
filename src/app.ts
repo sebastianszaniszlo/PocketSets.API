@@ -31,7 +31,8 @@ class App {
 
         if(process.env.NODE_ENV == 'production') {
             
-            this.ConnectionString = process.env.DB_PROD;
+            //TO DO(Seb): Figure out how to use the test DB(and test site) for dev mode and the live DB for production
+            this.ConnectionString = process.env.DB_TEST;
         }
         else {
 
