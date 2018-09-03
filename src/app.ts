@@ -35,7 +35,7 @@ class App {
         }
         else {
 
-            this.ConnectionString = mongoConnectionString;
+            this.ConnectionString = process.env.DB_TEST;
         }
 
         mongoose.connect(this.ConnectionString, { useNewUrlParser: true });
