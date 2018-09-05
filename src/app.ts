@@ -31,8 +31,8 @@ class App {
 
         if(process.env.NODE_ENV == 'production') {
             
-            //TO DO(Seb): Figure out how to use the test DB(and test site) for dev mode and the live DB for production
-            this.ConnectionString = process.env.DB_TEST;
+            //Note(Seb): This is stored on Heroku as a config var. The live site ponts to the live db and the test site to the test db
+            this.ConnectionString = process.env.DB_CONNECTION_STRING;
         }
         else {
 
