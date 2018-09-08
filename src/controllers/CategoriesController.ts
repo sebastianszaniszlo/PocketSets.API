@@ -1,10 +1,11 @@
-import { Controller, Get, Response, Body, Post } from "@decorators/express";
+import { Controller, Get, Response, Body, Post, Middleware } from "@decorators/express";
 import { Inject } from "@decorators/di";
 import IListCategoriesService from '../services/Categories/ListCategoriesService';
 import ICreateCategoryService from '../services/Categories/CreateCategoryService';
 import CategoryRequest from "../models/CategoryRequest";
+import AuthMiddleware from '../config/auth-middleware';
 
-@Controller('/categories')
+@Controller('/categories', [AuthMiddleware])
 export default class CategoriesController {
 
     constructor(@Inject(IListCategoriesService) private listCategoriesService: IListCategoriesService,

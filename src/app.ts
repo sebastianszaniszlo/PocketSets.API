@@ -2,8 +2,7 @@ import * as express from 'express';
 import * as mongoose from 'mongoose';
 import * as cors from 'cors';
 import * as bodyParser from 'body-parser';
-import * as passport from 'passport';
-import { mongoConnectionString } from './config';
+import { mongoConnectionString } from './config/database-config';
 
 class App {
 
@@ -23,7 +22,8 @@ class App {
         this.MongoSetup();
         this.CorsMiddleware();
         this.BodyParserMiddleware();
-        this.PassportMiddleware();
+        //this.PassportMiddleware();
+        //this.PassportConfig.Config();
         this.ExpressApp.use('/api', this.Router);
     }
 
@@ -53,11 +53,6 @@ class App {
         this.ExpressApp.use(bodyParser.urlencoded({ extended: false }));
     }
 
-    private PassportMiddleware(): void {
-
-        this.ExpressApp.use(passport.initialize());
-        this.ExpressApp.use(passport.session());
-    }
 }
 
 const app = new App();

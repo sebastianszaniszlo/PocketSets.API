@@ -2,5 +2,6 @@ import { Document } from 'mongoose';
 
 export default interface ICategory extends Document {
 
-    Name: string
+    Name: string,
+    UserId: string
 }

@@ -17,16 +17,19 @@
     "@decorators/express": "^2.3.0",
     "@decorators/mongoose": "^3.0.1",
     "@decorators/socket": "^3.0.2",
+    "bcrypt": "^3.0.0",
     "body-parser": "^1.18.3",
     "cors": "^2.8.4",
     "express": "^4.16.3",
+    "jsonwebtoken": "^8.3.0",
     "mongoose": "^5.2.9",
-    "nodemon": "^1.18.3",
-    "passport": "^0.4.0"
+    "nodemon": "^1.18.3"
   },
   "devDependencies": {
+    "@types/bcrypt": "^2.0.0",
     "@types/cors": "^2.8.4",
     "@types/express": "^4.16.0",
+    "@types/jsonwebtoken": "^7.2.8",
     "@types/mongodb": "^3.1.4",
     "@types/mongoose": "^5.2.6",
     "@types/node": "^10.9.0",

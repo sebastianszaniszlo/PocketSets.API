@@ -5,9 +5,10 @@ import IFindBaseExerciseService from '../services/BaseExercises/FindBaseExercise
 import ICreateBaseExerciseService from '../services/BaseExercises/CreateBaseExerciseService';
 import IUpdateBaseExerciseService from '../services/BaseExercises/UpdateBaseExerciseService';
 import BaseExerciseRequest from '../models/BaseExerciseRequest';
+import AuthMiddleware from '../config/auth-middleware';
 
 
-@Controller('/baseexercises')
+@Controller('/baseexercises', [AuthMiddleware])
 @Injectable()
 export default class BaseExerciseController {
 

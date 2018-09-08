@@ -1,10 +1,16 @@
 import { Schema, Model, model } from 'mongoose';
 import ICategory from './ICategory';
-import { BaseExerciseSchema } from '../BaseExercises/BaseExerciseMongoModel';
 
 export const CategorySchema: Schema = new Schema({
 
-    Name: String
+    Name: {
+        type: String,
+        required: true
+    },
+    UserId: {
+        type: Schema.Types.ObjectId,
+        required: true
+    }
 
 });
 
