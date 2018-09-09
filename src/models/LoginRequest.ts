@@ -1,6 +1,6 @@
 export default class LoginRequest {
 
-    constructor(public Email: string,
+    constructor(public EmailOrUsername: string,
                 public Password: string) {
 
     }

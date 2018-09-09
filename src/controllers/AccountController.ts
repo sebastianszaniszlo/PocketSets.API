@@ -2,15 +2,15 @@ import { Controller, Get, Request, Response, Body, Post } from "@decorators/expr
 import { Inject } from "@decorators/di";
 import IRegisterService from '../services/Account/RegisterService';
 import ILoginService from '../services/Account/LoginService';
-import UserRequest from "../models/RegisterRequest";
+import RegisterRequest from "../models/RegisterRequest";
 import LoginRequest from "../models/LoginRequest";
 import AuthMiddleware from "../middleware/auth-middleware";
 
 @Controller('/account')
 export default class CategoriesController {
 
-    constructor(@Inject(IRegisterService) private registerService: IRegisterService,
-                @Inject(ILoginService) private loginService: ILoginService) {
+    constructor(@Inject(IRegisterService) private RegisterService: IRegisterService,
+                @Inject(ILoginService) private LoginService: ILoginService) {
 
     }
 
@@ -21,9 +21,9 @@ export default class CategoriesController {
     }
 
     @Post('/register')
-    Register(@Body() reqBody: UserRequest, @Response() res): void {
+    Register(@Body() reqBody: RegisterRequest, @Response() res): void {
 
-        this.registerService.Register(reqBody)
+        this.RegisterService.Register(reqBody)
                             .then(user => {
                                 res.status(201).json(user);
                             })
@@ -35,7 +35,7 @@ export default class CategoriesController {
     @Post('/login')
     Login(@Body() reqBody: LoginRequest, @Response() res): void {
 
-        this.loginService.Login(reqBody)
+        this.LoginService.Login(reqBody)
                             .then(token => {
                                 res.status(200).json(token);
                             })
