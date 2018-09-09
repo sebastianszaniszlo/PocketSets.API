@@ -1,4 +1,4 @@
-import { Model, DocumentQuery } from 'mongoose';
+import { Model } from 'mongoose';
 import ICategory from '../../data/Categories/ICategory';
 import { Injectable } from '@decorators/di';
 import { CategoryMongoModel } from '../../data/Categories/CategoryMongoModel';
@@ -11,14 +11,16 @@ export default class ListCategoriesCommand implements IListCategoriesCommand {
         this.Collection = CategoryMongoModel;
     }
 
-    public List(): DocumentQuery<ICategory[], ICategory> {
+    public async List(userId: string): Promise<Array<ICategory>> {
 
-        return this.Collection.find();
+        return await this.Collection.find({
+            UserId: userId
+        });
     }
 
 }
 
 interface IListCategoriesCommand {
 
-    List(): DocumentQuery<ICategory[], ICategory>;
+    List(userId: string): Promise<Array<ICategory>>;
 }

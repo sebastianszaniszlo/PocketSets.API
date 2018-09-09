@@ -10,14 +10,13 @@ export default class CreateBaseExerciseService implements ICreateBaseExcerciseSe
 
     }
 
-    //TO DO: pass in user id when we have authentication
-    public Create(request: CategoryRequest): Promise<ICategory> {
+    public async Create(userId: string, request: CategoryRequest): Promise<ICategory> {
 
-        return this.CreateCategoryCommand.Create(request);
+        return await this.CreateCategoryCommand.Create(userId, request);
     }
 }
 
 interface ICreateBaseExcerciseService {
 
-    Create(request: CategoryRequest): Promise<ICategory>;
+    Create(userId: string, request: CategoryRequest): Promise<ICategory>;
 }

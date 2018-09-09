@@ -10,14 +10,13 @@ export default class CreateBaseExerciseService implements ICreateBaseExcerciseSe
 
     }
 
-    //TO DO: pass in user id when we have authentication
-    public Create(request: BaseExerciseRequest): Promise<IBaseExcercise> {
+    public async Create(userId:string, request: BaseExerciseRequest): Promise<IBaseExcercise> {
 
-        return this.CreateBaseExerciseCommand.Create(request);
+        return await this.CreateBaseExerciseCommand.Create(userId, request);
     }
 }
 
 interface ICreateBaseExcerciseService {
 
-    Create(request: BaseExerciseRequest): Promise<IBaseExcercise>;
+    Create(userId: string, request: BaseExerciseRequest): Promise<IBaseExcercise>;
 }

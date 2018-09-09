@@ -1,4 +1,4 @@
-import { Model, DocumentQuery } from 'mongoose';
+import { Model } from 'mongoose';
 import { Injectable } from '@decorators/di';
 import { UserMongoModel } from '../../data/Users/UserMongoModel';
 import IUser from '../../data/Users/IUser';
@@ -11,14 +11,14 @@ export default class FindUserByIdCommand implements IFindUserByIdCommand {
         this.Collection = UserMongoModel;
     }
 
-    public Find(id: string) : DocumentQuery<IUser, IUser> {
+    public async Find(id: string) : Promise<IUser> {
 
-        return this.Collection.findById(id);
+        return await this.Collection.findById(id);
     }
 
 }
 
 interface IFindUserByIdCommand {
 
-    Find(id: string) : DocumentQuery<IUser, IUser>;
+    Find(id: string) : Promise<IUser>;
 }

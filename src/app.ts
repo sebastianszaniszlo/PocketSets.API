@@ -39,7 +39,9 @@ class App {
             this.ConnectionString = mongoConnectionString;
         }
 
-        mongoose.connect(this.ConnectionString, { useNewUrlParser: true });
+        mongoose.connect(this.ConnectionString, {
+            useNewUrlParser: true
+        });
     }
 
     private CorsMiddleware(): void {

@@ -14,12 +14,13 @@ export default class AuthMiddleware implements Middleware {
             const bearerToken = bearerTokenHeader.split(' ')[1];
 
             //Verifiy the token
-            jwt.verify(bearerToken, secret, (err, user) => {
+            jwt.verify(bearerToken, secret, (err, storedClaims) => {
                 if(err) {
                     res.sendStatus(401);
                 }
                 else {
-                    // res.status(200).json(user);
+                    //@ts-ignore
+                    req.currentUserId = storedClaims.user._id;
                     next();
                 }
             });

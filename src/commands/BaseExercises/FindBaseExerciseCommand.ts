@@ -1,4 +1,4 @@
-import { Model, DocumentQuery } from 'mongoose';
+import { Model } from 'mongoose';
 import { Injectable } from '@decorators/di';
 import { BaseExerciseMongoModel } from '../../data/BaseExercises/BaseExerciseMongoModel';
 import IBaseExcercise from '../../data/BaseExercises/IBaseExercise';
@@ -11,14 +11,14 @@ export default class FindBaseExercisesCommand implements IFindBaseExercisesComma
         this.Collection = BaseExerciseMongoModel;
     }
 
-    public Find(id: string) : DocumentQuery<IBaseExcercise, IBaseExcercise> {
+    public async Find(id: string): Promise<IBaseExcercise> {
 
-        return this.Collection.findById(id);
+        return await this.Collection.findById(id);
     }
 
 }
 
 interface IFindBaseExercisesCommand {
 
-    Find(id: string) : DocumentQuery<IBaseExcercise, IBaseExcercise>;
+    Find(id: string): Promise<IBaseExcercise>;
 }

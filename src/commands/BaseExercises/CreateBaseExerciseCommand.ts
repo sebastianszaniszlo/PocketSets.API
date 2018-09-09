@@ -12,14 +12,22 @@ export default class CreateBaseExerciseCommand implements ICreateBaseExerciseCom
         this.Collection = BaseExerciseMongoModel;
     }
 
-    public Create(request: BaseExerciseRequest): Promise<IBaseExcercise> {
+    public async Create(userId: string, request: BaseExerciseRequest): Promise<IBaseExcercise> {
 
-        return this.Collection.create(request);
+        return await this.Collection.create({
+            Name: request.Name,
+            CategoryId: request.CategoryId,
+            UserId: userId,
+            DefaultSets: request.DefaultSets,
+            DefaultReps: request.DefaultReps,
+            DefaultWeight: request.DefaultWeight,
+            OneRepMax: request.OneRepMax
+        });
     }
 
 }
 
 interface ICreateBaseExerciseCommand {
 
-    Create(request: BaseExerciseRequest): Promise<IBaseExcercise>;
+    Create(userId: string, request: BaseExerciseRequest): Promise<IBaseExcercise>;
 }

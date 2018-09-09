@@ -1,9 +1,10 @@
-import { Controller, Get, Response, Body, Post } from "@decorators/express";
+import { Controller, Get, Request, Response, Body, Post } from "@decorators/express";
 import { Inject } from "@decorators/di";
 import IRegisterService from '../services/Account/RegisterService';
 import ILoginService from '../services/Account/LoginService';
 import UserRequest from "../models/RegisterRequest";
 import LoginRequest from "../models/LoginRequest";
+import AuthMiddleware from "../middleware/auth-middleware";
 
 @Controller('/account')
 export default class CategoriesController {
@@ -11,6 +12,12 @@ export default class CategoriesController {
     constructor(@Inject(IRegisterService) private registerService: IRegisterService,
                 @Inject(ILoginService) private loginService: ILoginService) {
 
+    }
+
+    @Get('/me', [AuthMiddleware])
+    FetchMe(@Request() req, @Response() res): void {
+
+        res.status(200).json(req.currentUserId);
     }
 
     @Post('/register')
@@ -21,26 +28,20 @@ export default class CategoriesController {
                                 res.status(201).json(user);
                             })
                             .catch(err => {
-                                res.status(500).send(err);
+                                res.status(500).send(err.message);
                             });
     }
 
     @Post('/login')
     Login(@Body() req: LoginRequest, @Response() res): void {
 
-        try {
-            this.loginService.Login(req)
+        this.loginService.Login(req)
                             .then(token => {
                                 res.status(200).json(token);
                             })
                             .catch(err => {
-                                console.log('ERROR', err)
-                                res.status(500).json(err).send(err);
+                                res.status(500).send(err.message);
                             });
-        }
-        catch(err) {
-            res.status(500).send(err);
-        }
         
     }
 }

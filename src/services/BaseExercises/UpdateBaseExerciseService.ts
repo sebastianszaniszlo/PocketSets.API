@@ -1,7 +1,6 @@
 import { Inject, Injectable } from "@decorators/di";
 import IUpdateBaseExerciseCommand from "../../commands/BaseExercises/UpdateBaseExerciseCommand";
 import IBaseExcercise from "../../data/BaseExercises/IBaseExercise";
-import { DocumentQuery } from "mongoose";
 import BaseExerciseRequest from "../../models/BaseExerciseRequest";
 
 @Injectable()
@@ -11,14 +10,13 @@ export default class UpdateBaseExerciseService implements IUpdateBaseExerciseSer
 
     }
 
-    //TO DO: pass in user id when we have authentication
-    public Update(id: string, request: BaseExerciseRequest): DocumentQuery<IBaseExcercise, IBaseExcercise> {
+    public async Update(id: string, request: BaseExerciseRequest): Promise<IBaseExcercise> {
 
-        return this.UpdateBaseExerciseCommand.Update(id, request);
+        return await this.UpdateBaseExerciseCommand.Update(id, request);
     }
 }
 
 interface IUpdateBaseExerciseService {
 
-    Update(id: string, request: BaseExerciseRequest): DocumentQuery<IBaseExcercise, IBaseExcercise>
+    Update(id: string, request: BaseExerciseRequest): Promise<IBaseExcercise>;
 }

@@ -1,4 +1,4 @@
-import { Model, DocumentQuery } from 'mongoose';
+import { Model } from 'mongoose';
 import { Injectable } from '@decorators/di';
 import { UserMongoModel } from '../../data/Users/UserMongoModel';
 import IUser from '../../data/Users/IUser';
@@ -11,14 +11,14 @@ export default class FindUserByEmailCommand implements IFindUserByEmailCommand {
         this.Collection = UserMongoModel;
     }
 
-    public Find(email: string) : DocumentQuery<IUser, IUser> {
+    public async Find(email: string) : Promise<IUser> {
 
-        return this.Collection.findOne({ Email: email});
+        return await this.Collection.findOne({ Email: email});
     }
 
 }
 
 interface IFindUserByEmailCommand {
 
-    Find(email: string) : DocumentQuery<IUser, IUser>;
+    Find(email: string) : Promise<IUser>;
 }

@@ -1,24 +1,26 @@
-import { Model, DocumentQuery } from 'mongoose';
-import IBaseExcercise from '../../data/BaseExercises/IBaseExercise';
+import { Model } from 'mongoose';
+import IBaseExercise from '../../data/BaseExercises/IBaseExercise';
 import { Injectable } from '@decorators/di';
 import { BaseExerciseMongoModel } from '../../data/BaseExercises/BaseExerciseMongoModel';
 
 @Injectable()
 export default class ListBaseExercisesCommand implements IListBaseExercisesCommand {
 
-    constructor(private Collection: Model<IBaseExcercise>) {
+    constructor(private Collection: Model<IBaseExercise>) {
         
         this.Collection = BaseExerciseMongoModel;
     }
 
-    public List(): DocumentQuery<IBaseExcercise[], IBaseExcercise> {
+    public async List(userId: string): Promise<Array<IBaseExercise>> {
 
-        return this.Collection.find();
+        return await this.Collection.find({
+            UserId: userId
+        });
     }
 
 }
 
 interface IListBaseExercisesCommand {
 
-    List(): DocumentQuery<IBaseExcercise[], IBaseExcercise>;
+    List(userId: string): Promise<Array<IBaseExercise>>;
 }

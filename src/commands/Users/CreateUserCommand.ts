@@ -12,9 +12,9 @@ export default class CreateUserCommand implements ICreateUserCommand {
         this.Collection = UserMongoModel;
     }
 
-    public Create(request: RegisterRequest): Promise<IUser> {
+    public async Create(request: RegisterRequest): Promise<IUser> {
 
-        return this.Collection.create(request);
+        return await this.Collection.create(request);
     }
 
 }

@@ -1,4 +1,4 @@
-import { Model, DocumentQuery } from 'mongoose';
+import { Model } from 'mongoose';
 import IBaseExcercise from '../../data/BaseExercises/IBaseExercise';
 import { Injectable } from '@decorators/di';
 import { BaseExerciseMongoModel } from '../../data/BaseExercises/BaseExerciseMongoModel';
@@ -11,14 +11,17 @@ export default class ListBaseExercisesForCategoryCommand implements IListBaseExe
         this.Collection = BaseExerciseMongoModel;
     }
 
-    public List(categoryId: string): DocumentQuery<IBaseExcercise[], IBaseExcercise> {
+    public async List(userId: string, categoryId: string): Promise<Array<IBaseExcercise>> {
 
-        return this.Collection.find({ CategoryId: categoryId });
+        return await this.Collection.find({
+            UserId: userId,
+            CategoryId: categoryId
+        });
     }
 
 }
 
 interface IListBaseExercisesForCategoryCommand {
 
-    List(categoryId: string): DocumentQuery<IBaseExcercise[], IBaseExcercise>;
+    List(userId: string, categoryId: string): Promise<Array<IBaseExcercise>>;
 }

@@ -1,8 +1,7 @@
 import { Inject, Injectable } from "@decorators/di";
 import IListBaseExercisesCommand from "../../commands/BaseExercises/ListBaseExercisesCommand";
 import IListBaseExercisesForCategoryCommand from "../../commands/BaseExercises/ListBaseExercisesForCategoryCommand";
-import IBaseExcercise from "../../data/BaseExercises/IBaseExercise";
-import { DocumentQuery } from "mongoose";
+import IBaseExercise from "../../data/BaseExercises/IBaseExercise";
 
 @Injectable()
 export default class ListBaseExercisesService implements IListBaseExcersisesService {
@@ -12,19 +11,19 @@ export default class ListBaseExercisesService implements IListBaseExcersisesServ
 
     }
 
-    //TO DO: pass in user id when we have authentication
-    public List(): DocumentQuery<IBaseExcercise[], IBaseExcercise> {
+    public async List(userId: string): Promise<Array<IBaseExercise>> {
 
-        return this.ListBaseExercisesCommand.List();
+        return await this.ListBaseExercisesCommand.List(userId);
     }
 
-    public ListForCategory(categoryId: string): DocumentQuery<IBaseExcercise[], IBaseExcercise> {
+    public async ListForCategory(userId: string, categoryId: string): Promise<Array<IBaseExercise>> {
 
-        return this.ListBaseExercisesForCategoryCommand.List(categoryId);
+        return await this.ListBaseExercisesForCategoryCommand.List(userId, categoryId);
     }
 }
 
 interface IListBaseExcersisesService {
 
-    List(): DocumentQuery<IBaseExcercise[], IBaseExcercise>
+    List(userId: string): Promise<Array<IBaseExercise>>;
+    ListForCategory(userId: string, categoryId: string): Promise<Array<IBaseExercise>>;
 }

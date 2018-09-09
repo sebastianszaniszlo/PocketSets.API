@@ -1,4 +1,4 @@
-import { Model, DocumentQuery } from 'mongoose';
+import { Model } from 'mongoose';
 import { Injectable } from '@decorators/di';
 import BaseExerciseRequest from '../../models/BaseExerciseRequest';
 import IBaseExcercise from '../../data/BaseExercises/IBaseExercise';
@@ -12,14 +12,16 @@ export default class UpdateBaseExerciseCommand implements IUpdateBaseExcerciseCo
         this.Collection = BaseExerciseMongoModel;
     }
 
-    public Update(id: string, request: BaseExerciseRequest): DocumentQuery<IBaseExcercise, IBaseExcercise> {
+    public async Update(id: string, request: BaseExerciseRequest): Promise<IBaseExcercise> {
 
-        return this.Collection.findByIdAndUpdate(id, request, { new: true });
+        return await this.Collection.findByIdAndUpdate(id, request, {
+            new: true //returns the updated item
+        });
     }
 
 }
 
 interface IUpdateBaseExcerciseCommand {
 
-    Update(id: string, request: BaseExerciseRequest): DocumentQuery<IBaseExcercise, IBaseExcercise>;
+    Update(id: string, request: BaseExerciseRequest): Promise<IBaseExcercise>;
 }

@@ -12,14 +12,17 @@ export default class CreateCategoryCommand implements ICreateCategoryCommand{
         this.Collection = CategoryMongoModel;
     }
 
-    public Create(request: CategoryRequest): Promise<ICategory> {
+    public async Create(userId: string, request: CategoryRequest): Promise<ICategory> {
 
-        return this.Collection.create(request);
+        return await this.Collection.create({
+            Name: request.Name,
+            UserId: userId
+        });
     }
 
 }
 
 interface ICreateCategoryCommand {
 
-    Create(request: CategoryRequest): Promise<ICategory>;
+    Create(userId: string, request: CategoryRequest): Promise<ICategory>;
 }

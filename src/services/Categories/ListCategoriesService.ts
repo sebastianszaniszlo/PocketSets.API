@@ -1,23 +1,21 @@
 import { Inject, Injectable } from "@decorators/di";
 import ICategory from "../../data/Categories/ICategory";
-import { DocumentQuery } from "mongoose";
 import IListCategoriesCommand from '../../commands/Categories/ListCategoriesCommand';
 
 @Injectable()
 export default class ListBaseExercisesService implements IListBaseExcersisesService {
 
-    constructor(@Inject(IListCategoriesCommand) private listCategoriesCommand: IListCategoriesCommand) {
+    constructor(@Inject(IListCategoriesCommand) private ListCategoriesCommand: IListCategoriesCommand) {
 
     }
 
-    //TO DO: pass in user id when we have authentication
-    public List(): DocumentQuery<ICategory[], ICategory> {
+    public async List(userId: string): Promise<Array<ICategory>> {
 
-        return this.listCategoriesCommand.List();
+        return await this.ListCategoriesCommand.List(userId);
     }
 }
 
 interface IListBaseExcersisesService {
 
-    List(): DocumentQuery<ICategory[], ICategory>
+    List(userId: string): Promise<Array<ICategory>>;
 }

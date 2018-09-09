@@ -1,7 +1,6 @@
 import { Inject, Injectable } from "@decorators/di";
 import IFindBaseExerciseCommand from "../../commands/BaseExercises/FindBaseExerciseCommand";
 import IBaseExcercise from "../../data/BaseExercises/IBaseExercise";
-import { DocumentQuery } from "mongoose";
 
 @Injectable()
 export default class FindBaseExerciseService implements IFindBaseExerciseService {
@@ -10,14 +9,13 @@ export default class FindBaseExerciseService implements IFindBaseExerciseService
 
     }
 
-    //TO DO: pass in user id when we have authentication
-    public Find(id: string): DocumentQuery<IBaseExcercise, IBaseExcercise> {
+    public async Find(id: string): Promise<IBaseExcercise> {
 
-        return this.FindBaseExerciseCommand.Find(id);
+        return await this.FindBaseExerciseCommand.Find(id);
     }
 }
 
 interface IFindBaseExerciseService {
 
-    Find(id: string): DocumentQuery<IBaseExcercise, IBaseExcercise>;
+    Find(id: string): Promise<IBaseExcercise>;
 }
