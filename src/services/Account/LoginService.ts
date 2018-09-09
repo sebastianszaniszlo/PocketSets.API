@@ -3,6 +3,7 @@ import LoginRequest from "../../models/LoginRequest";
 import IFindUserByEmailCommand from '../../commands/Users/FindUserByEmailCommand';
 import IPasswordComparisonService from '../../services/Account/PasswordComparisonService';
 import ITokenService from '../Account/TokenService';
+import TokenResponse from "../../models/TokenResponse";
 
 @Injectable()
 export default class LoginService implements ILoginService {
@@ -13,7 +14,7 @@ export default class LoginService implements ILoginService {
 
     }
 
-    public async Login(request: LoginRequest): Promise<string> {
+    public async Login(request: LoginRequest): Promise<TokenResponse> {
 
         const user = await this.FindUserByEmailCommand.Find(request.Email);
         
@@ -34,5 +35,5 @@ export default class LoginService implements ILoginService {
 
 interface ILoginService {
 
-    Login(request: LoginRequest): Promise<string>;
+    Login(request: LoginRequest): Promise<TokenResponse>;
 }

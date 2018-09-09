@@ -2,23 +2,26 @@ import { Injectable } from "@decorators/di";
 import IUser from "../../data/Users/IUser";
 import * as Jwt from 'jsonwebtoken';
 import { secret } from '../../config/database-config';
+import TokenResponse from "../../models/TokenResponse";
+import UserResponse from "../../models/UserResponse";
 
 @Injectable()
 export default class TokenService implements ITokenService {
 
-    public async Create(user: IUser, expiresIn?: number): Promise<string> {
+    public async Create(user: IUser, expiresIn?: number): Promise<TokenResponse> {
         
+        const userPayload = new UserResponse(user._id, user.Email, user.Username);
         //Jwt sign needs a plain object
-        //TO DO(Seb): don't put an IUser objecct in the payload(it ccontns the password hash)
-        const token = Jwt.sign({user: user}, secret, {
+        const token = Jwt.sign({ user: userPayload }, secret, {
             expiresIn: 3600 //1 hour
         });
 
-        return Promise.resolve(token);
+
+        return Promise.resolve(new TokenResponse(token, userPayload));
     }
 }
 
 interface ITokenService {
 
-    Create(user: IUser, expiresIn?: number): Promise<string>;
+    Create(user: IUser, expiresIn?: number): Promise<TokenResponse>;
 }

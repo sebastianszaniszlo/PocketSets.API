@@ -21,9 +21,9 @@ export default class CategoriesController {
     }
 
     @Post('/register')
-    Register(@Body() req: UserRequest, @Response() res): void {
+    Register(@Body() reqBody: UserRequest, @Response() res): void {
 
-        this.registerService.Register(req)
+        this.registerService.Register(reqBody)
                             .then(user => {
                                 res.status(201).json(user);
                             })
@@ -33,9 +33,9 @@ export default class CategoriesController {
     }
 
     @Post('/login')
-    Login(@Body() req: LoginRequest, @Response() res): void {
+    Login(@Body() reqBody: LoginRequest, @Response() res): void {
 
-        this.loginService.Login(req)
+        this.loginService.Login(reqBody)
                             .then(token => {
                                 res.status(200).json(token);
                             })

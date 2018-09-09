@@ -3,6 +3,7 @@ import { Injectable } from '@decorators/di';
 import RegisterRequest from '../../models/RegisterRequest';
 import IUser from '../../data/Users/IUser';
 import { UserMongoModel } from '../../data/Users/UserMongoModel';
+import UserResponse from '../../models/UserResponse';
 
 @Injectable()
 export default class CreateUserCommand implements ICreateUserCommand {
@@ -12,14 +13,20 @@ export default class CreateUserCommand implements ICreateUserCommand {
         this.Collection = UserMongoModel;
     }
 
-    public async Create(request: RegisterRequest): Promise<IUser> {
+    public async Create(request: RegisterRequest): Promise<UserResponse> {
 
-        return await this.Collection.create(request);
+        const user = await this.Collection.create(request);
+
+        return new UserResponse(
+            user._id,
+            user.Email,
+            user.Username
+        );
     }
 
 }
 
 interface ICreateUserCommand {
 
-    Create(request: RegisterRequest): Promise<IUser>;
+    Create(request: RegisterRequest): Promise<UserResponse>;
 }

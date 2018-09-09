@@ -4,7 +4,7 @@ import IFindUserByEmailCommand from '../../commands/Users/FindUserByEmailCommand
 import IFindUserbyUsernameCommand from '../../commands/Users/FindUserByUsernameCommand';
 import IPasswordHashingService from '../../services/Account/PasswordHashingService';
 import RegisterRequest from "../../models/RegisterRequest";
-import IUser from "../../data/Users/IUser";
+import UserResponse from "../../models/UserResponse";
 
 
 @Injectable()
@@ -17,7 +17,7 @@ export default class RegisterService implements IRegisterService {
 
     }
 
-    public async Register(request: RegisterRequest): Promise<IUser> {
+    public async Register(request: RegisterRequest): Promise<UserResponse> {
         
         const userByEmail = await this.FindUserByEmailCommand.Find(request.Email);
         const userByUsername = await this.FindUserbyUsernameCommand.Find(request.Username);
@@ -44,5 +44,5 @@ export default class RegisterService implements IRegisterService {
 
 interface IRegisterService {
 
-    Register(request: RegisterRequest): Promise<IUser>;
+    Register(request: RegisterRequest): Promise<UserResponse>;
 }

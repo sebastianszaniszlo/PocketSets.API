@@ -19,9 +19,19 @@ export default class AuthMiddleware implements Middleware {
                     res.sendStatus(401);
                 }
                 else {
+                    // The jwt payload contains a user field and some other stuff and it is set as a plain
+                    // object in TokenService
                     //@ts-ignore
-                    req.currentUserId = storedClaims.user._id;
-                    next();
+                    const currentUserId = storedClaims.user.Id; //user is of type UserResponse
+                    if(currentUserId !== undefined) {
+                        //put the currentUserId on the request object so we can access it in any controller action
+                        //@ts-ignore
+                        req.currentUserId = currentUserId;
+                        next();
+                    }
+                    else {
+                        res.sendStatus(404);
+                    }
                 }
             });
 
