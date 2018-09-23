@@ -1,17 +1,17 @@
 import { Model } from 'mongoose';
 import { Injectable } from '@decorators/di';
 import { BaseExerciseMongoModel } from '../../data/BaseExercises/BaseExerciseMongoModel';
-import IBaseExcercise from '../../data/BaseExercises/IBaseExercise';
+import IBaseExercise from '../../data/BaseExercises/IBaseExercise';
 
 @Injectable()
 export default class FindBaseExercisesCommand implements IFindBaseExercisesCommand {
 
-    constructor(private Collection: Model<IBaseExcercise>) {
+    constructor(private Collection: Model<IBaseExercise>) {
         
         this.Collection = BaseExerciseMongoModel;
     }
 
-    public async Find(id: string): Promise<IBaseExcercise> {
+    public async Find(id: string): Promise<IBaseExercise> {
 
         return await this.Collection.findById(id);
     }
@@ -20,5 +20,5 @@ export default class FindBaseExercisesCommand implements IFindBaseExercisesComma
 
 interface IFindBaseExercisesCommand {
 
-    Find(id: string): Promise<IBaseExcercise>;
+    Find(id: string): Promise<IBaseExercise>;
 }

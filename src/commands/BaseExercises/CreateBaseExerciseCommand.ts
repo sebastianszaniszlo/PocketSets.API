@@ -1,18 +1,18 @@
 import { Model } from 'mongoose';
 import { Injectable } from '@decorators/di';
 import BaseExerciseRequest from '../../models/BaseExerciseRequest';
-import IBaseExcercise from '../../data/BaseExercises/IBaseExercise';
+import IBaseExercise from '../../data/BaseExercises/IBaseExercise';
 import { BaseExerciseMongoModel } from '../../data/BaseExercises/BaseExerciseMongoModel';
 
 @Injectable()
 export default class CreateBaseExerciseCommand implements ICreateBaseExerciseCommand{
 
-    constructor(private Collection: Model<IBaseExcercise>) {
+    constructor(private Collection: Model<IBaseExercise>) {
         
         this.Collection = BaseExerciseMongoModel;
     }
 
-    public async Create(userId: string, request: BaseExerciseRequest): Promise<IBaseExcercise> {
+    public async Create(userId: string, request: BaseExerciseRequest): Promise<IBaseExercise> {
 
         return await this.Collection.create({
             Name: request.Name,
@@ -29,5 +29,5 @@ export default class CreateBaseExerciseCommand implements ICreateBaseExerciseCom
 
 interface ICreateBaseExerciseCommand {
 
-    Create(userId: string, request: BaseExerciseRequest): Promise<IBaseExcercise>;
+    Create(userId: string, request: BaseExerciseRequest): Promise<IBaseExercise>;
 }

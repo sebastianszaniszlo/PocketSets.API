@@ -1,6 +1,6 @@
 import { Document } from 'mongoose';
 
-export default interface IBaseExcercise extends Document {
+export default interface IBaseExercise extends Document {
 
     Name: string;
     CategoryId: string;

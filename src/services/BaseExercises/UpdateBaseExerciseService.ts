@@ -1,6 +1,6 @@
 import { Inject, Injectable } from "@decorators/di";
 import IUpdateBaseExerciseCommand from "../../commands/BaseExercises/UpdateBaseExerciseCommand";
-import IBaseExcercise from "../../data/BaseExercises/IBaseExercise";
+import IBaseExercise from "../../data/BaseExercises/IBaseExercise";
 import BaseExerciseRequest from "../../models/BaseExerciseRequest";
 
 @Injectable()
@@ -10,7 +10,7 @@ export default class UpdateBaseExerciseService implements IUpdateBaseExerciseSer
 
     }
 
-    public async Update(id: string, request: BaseExerciseRequest): Promise<IBaseExcercise> {
+    public async Update(id: string, request: BaseExerciseRequest): Promise<IBaseExercise> {
 
         return await this.UpdateBaseExerciseCommand.Update(id, request);
     }
@@ -18,5 +18,5 @@ export default class UpdateBaseExerciseService implements IUpdateBaseExerciseSer
 
 interface IUpdateBaseExerciseService {
 
-    Update(id: string, request: BaseExerciseRequest): Promise<IBaseExcercise>;
+    Update(id: string, request: BaseExerciseRequest): Promise<IBaseExercise>;
 }

@@ -4,7 +4,7 @@ import CategoryRequest from "../../models/CategoryRequest";
 import ICategory from "../../data/Categories/ICategory";
 
 @Injectable()
-export default class CreateBaseExerciseService implements ICreateBaseExcerciseService {
+export default class CreateBaseExerciseService implements ICreateBaseExerciseService {
 
     constructor(@Inject(ICreateCategoryCommand) private CreateCategoryCommand: ICreateCategoryCommand) {
 
@@ -16,7 +16,7 @@ export default class CreateBaseExerciseService implements ICreateBaseExcerciseSe
     }
 }
 
-interface ICreateBaseExcerciseService {
+interface ICreateBaseExerciseService {
 
     Create(userId: string, request: CategoryRequest): Promise<ICategory>;
 }

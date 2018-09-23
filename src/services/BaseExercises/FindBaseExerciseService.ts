@@ -1,6 +1,6 @@
 import { Inject, Injectable } from "@decorators/di";
 import IFindBaseExerciseCommand from "../../commands/BaseExercises/FindBaseExerciseCommand";
-import IBaseExcercise from "../../data/BaseExercises/IBaseExercise";
+import IBaseExercise from "../../data/BaseExercises/IBaseExercise";
 
 @Injectable()
 export default class FindBaseExerciseService implements IFindBaseExerciseService {
@@ -9,7 +9,7 @@ export default class FindBaseExerciseService implements IFindBaseExerciseService
 
     }
 
-    public async Find(id: string): Promise<IBaseExcercise> {
+    public async Find(id: string): Promise<IBaseExercise> {
 
         return await this.FindBaseExerciseCommand.Find(id);
     }
@@ -17,5 +17,5 @@ export default class FindBaseExerciseService implements IFindBaseExerciseService
 
 interface IFindBaseExerciseService {
 
-    Find(id: string): Promise<IBaseExcercise>;
+    Find(id: string): Promise<IBaseExercise>;
 }
